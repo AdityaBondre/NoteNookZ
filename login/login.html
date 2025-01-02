@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <form id="loginForm" action="../index.html" method="get">
+        <h1>Login</h1>
+        <div>
+            <label for="name">Name:</label>
+            <div>
+                <input type="text" id="name" placeholder="name" required minlength="3"><i class="fa-solid fa-user"></i>
+            </div>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <div>
+                <input type="email" id="email" placeholder="email" required><i class="fa-solid fa-envelope"></i>
+            </div>
+        </div>
+        <div>
+            <label for="pass">Password:</label>
+            <div>
+                <input type="password" id="pass" placeholder="password" required minlength="6"><i class="fa-solid fa-key"></i>
+            </div>
+        </div>
+        <button type="submit" class="button">Login</button>
+    </form>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            let isValid = true;
+
+            // Validate Name
+            const name = document.getElementById('name');
+            if (name.value.trim().length < 3) {
+                alert('Name must be at least 3 characters long.');
+                isValid = false;
+            }
+
+            // Validate Email
+            const email = document.getElementById('email');
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!emailPattern.test(email.value)) {
+                alert('Please enter a valid email address.');
+                isValid = false;
+            }
+
+            // Validate Password
+            const pass = document.getElementById('pass');
+            if (pass.value.trim().length < 6) {
+                alert('Password must be at least 6 characters long.');
+                isValid = false;
+            }
+
+            // Prevent form submission if validation fails
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
+

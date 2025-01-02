@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NoteNooKZ</title>
+<style>
+  /* styles.css */
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #121212;
+  color: #E0E0E0;
+}
+
+/* Main header container */
+.header {
+  display: flex;
+  justify-content: space-between; /* Space between the logo and navigation */
+  align-items: center; /* Vertically align items */
+  padding: 10px 20px; /* Adjust padding as necessary */
+  background-color: hwb(0 0% 100%); /* Adjust background color as per your design */
+  height: 100px; /* Set a height for the header */
+}
+footer {
+            background: var(--header-footer-gradient);
+            color: var(--text);
+            padding: 2rem 0;
+            margin-top: 3rem;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem; /* Added padding for spacing */
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            fill: var(--text);
+            transition: fill 0.3s ease;
+        }
+
+        .social-icon:hover {
+            fill: var(--primary);
+        }
+
+/* Logo container */
+.logo {
+  max-width: 350px; /* Adjust logo size as necessary */
+  margin-left: 10px;
+}
+
+/* Logo image */
+.newlogo {
+  width: 100%; /* Make sure it fits within the container */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Navigation links */
+.nav-links {
+  display: flex;
+  gap: 20px; /* Space between each navigation link */
+}
+
+/* Styling for each link */
+.nav-links a {
+  color: white; /* Adjust as necessary */
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Add hover effect for navigation links */
+.nav-links a:hover {
+  color: #74eed1;
+}
+
+
+.section {
+  padding: 50px 20px;
+  background-color: #1E1E1E;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.roadmap-section {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  color: #FFFFFF;
+}
+
+.section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  color: #FFFFFF;
+}
+
+.section h2 svg {
+  margin-right: 10px;
+}
+
+.roadmap {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.roadmap-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFFFFF;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+
+.circle:hover, .circle.active {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.progress-bar {
+  width: 150px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress {
+  width: 0;
+  height: 100%;
+  background-color: #4CAF50;
+  transition: width 0.3s ease;
+}
+
+.container {
+  padding: 50px 20px;
+}
+
+.resources h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.resource-grid {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+  background-color: #2C2C2C;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.resource-grid.active {
+  display: grid;
+}
+
+.resource-box ul li {
+  position: relative;
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  background-color: #4A4A4A;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, padding 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resource-box ul li .icon {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+
+.resource-box ul li .circle {
+  transition: transform 0.3s ease;
+}
+
+.resource-box ul li:hover .circle {
+  transform: scale(0); /* Shrink the circle on hover */
+}
+
+.resource-box ul li:hover .icon {
+  transform: translateX(2px);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.resource-box ul li:hover {
+  background-color: #5A5A5A;
+  padding-right: 40px;
+}
+
+.footer {
+  background-color: #1F1F1F;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  margin: 10px;
+}
+
+.footer-section h3 {
+  margin-bottom: 10px;
+  color: #FFFFFF;
+}
+
+.footer-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 5px;
+}
+
+.footer-section ul li a {
+  color: #BBBBBB;
+  text-decoration: none;
+}
+
+.featured-section {
+  background-color: #2C2C2C;
+  padding: 50px 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.featured-section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+}
+
+.featured-section h2 svg {
+  margin-right: 10px;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.flash-card {
+  background-color: #383838;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #E0E0E0;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.flash-card:hover {
+  transform: scale(1.05);
+}
+
+.flash-card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #FFFFFF;
+}
+
+.flash-card p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.flash-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.flash-card .card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #4A4A4A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.flash-card:hover .card-back {
+  opacity: 1;
+}
+
+#progress-bar {
+  width: 0;
+  height: 5px;
+  background-color: hsl(40, 92%, 55%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: width 0.3s ease;
+}
+.roadmap-section {
+  background-color: #1E1E1E;
+  padding: 50px 20px;
+  border-radius: 10px;
+  margin: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.roadmap-section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  color: #FFFFFF;
+}
+
+.roadmap-section h2 svg {
+  margin-right: 10px;
+}
+
+.roadmap {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.roadmap-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFFFFF;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.circle img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.circle span {
+  position: relative;
+  z-index: 1;
+  /* background-color: hwb(0 96% 4% / 0); */
+  padding: 5px 10px;
+  border-radius: 15px;
+}
+
+.circle:hover, .circle.active {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.circle:hover img, .circle.active img {
+  opacity: 0.8;
+}
+
+.progress-bar {
+  width: 150px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress {
+  width: 0;
+  height: 100%;
+  background-color: hwb(23 40% 5%);
+  transition: width 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .roadmap {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .roadmap-item {
+    margin-bottom: 30px;
+  }
+}
+.resource-grid {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+  background-color: #2C2C2C;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.resource-grid.active {
+  display: grid;
+}
+
+.resource-box {
+  background-color: #383838;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #E0E0E0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.resource-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.resource-box:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  background-color: #424242;
+}
+
+.resource-box:hover::before {
+  opacity: 1;
+}
+
+.resource-box h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  color: #FFFFFF;
+  position: relative;
+  z-index: 1;
+}
+
+.resource-box h3 svg {
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+}
+
+.resource-box:hover h3 svg {
+  transform: scale(1.1);
+}
+
+.resource-box ul {
+  list-style-type: none;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.resource-box ul li {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #4A4A4A;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.resource-box ul li:hover {
+  background-color: #5A5A5A;
+  transform: translateX(5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Specific styles for notes section */
+.resource-box.notes:hover {
+  background-color: #3A3A3A;
+}
+
+.resource-box.notes ul li:hover {
+  background-color: #6A1B9A;
+}
+
+/* Specific styles for videos section */
+.resource-box.videos:hover {
+  background-color: #3A3A3A;
+}
+
+.resource-box.videos ul li:hover {
+  background-color: #1565C0;
+}
+.footer {
+  background-color: #1F1F1F;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  margin: 10px;
+}
+
+.footer-section h3 {
+  margin-bottom: 10px;
+  color: #FFFFFF;
+}
+
+.footer-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 5px;
+}
+
+.footer-section ul li a {
+  color: #BBBBBB;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .resource-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+  
+
+<div id="progress-bar"></div>
+
+<header class="header">
+  <div class="logo">
+    
+      <img src="updatedlogo-removebg-preview.png" class="newlogo" alt="Notenookz logo">
+    
+  </div>
+  <nav class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#resources">Resources</a>
+    <a href="#featured">Featured</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<section id="roadmap" class="section roadmap-section">
+  <h2>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 3v18h18"/>
+      <path d="M18.5 3a2.5 2.5 0 0 1 0 5H3"/>
+      <path d="M13.5 8a2.5 2.5 0 0 1 0 5H3"/>
+      <path d="M8.5 13a2.5 2.5 0 0 1 0 5H3"/>
+    </svg>
+    Learning Roadmap
+  </h2>
+  <div class="roadmap">
+    <div class="roadmap-item">
+      <div class="circle beginner active">
+      <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Beginner">
+     <span>Beginner</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress" data-progress="100"></div>
+      </div>
+    </div>
+    <div class="roadmap-item">
+      <div class="circle intermediate">
+        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Intermediate">
+        <span>Intermediate</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress" data-progress="75"></div>
+      </div>
+    </div>
+    <div class="roadmap-item">
+      <div class="circle advanced">
+        <img src="https://images.unsplash.com/photo-1532619187608-e5375cab36aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Advanced">
+        <span>Advanced</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress" data-progress="50"></div>
+      </div>
+    </div>
+    <div class="roadmap-item">
+      <div class="circle expert">
+        <img src="WhatsApp Image 2024-09-12 at 12.04.54_becb0e5e.jpg" alt="Expert">
+        <span>Expert</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress" data-progress="25"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="container">
+  <section id="resources" class="resources section">
+    <h2>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+      </svg>
+      Learning Resources
+    </h2>
+
+    <div class="resource-grid content beginner active">
+      <div class="resource-box">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+          </svg>
+          Notes
+        </h3>
+        <ul>
+          <li>
+            Basic Mathematics Notes
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Introduction to Physics Notes
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Fundamentals of Chemistry
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Biology Basics: Cell Structure
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Introduction to Computer Science
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+        </ul>
+      </div>
+    
+      <div class="resource-box">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="23 7 16 12 23 17 23 7"></polygon>
+            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+          </svg>
+          Video Lectures
+        </h3>
+        <ul>
+          <li>Basic Algebra Video Series
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Classical Mechanics Video Series
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Introduction to Organic Chemistry
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Human Anatomy and Physiology
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Programming Fundamentals in Python
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    
+    
+
+    <div class="resource-grid content intermediate">
+      <div class="resource-box">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 1 1 3-3h7z"></path>
+          </svg>
+          Notes
+        </h3>
+        <ul>
+          <li>
+            Intermediate Algebra Notes
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Electromagnetism Notes
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Organic Chemistry Reactions
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Genetics and Evolution
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Data Structures and Algorithms
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+        </ul>
+      </div>
+    
+      <div class="resource-box">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="23 7 16 12 23 17 23 7"></polygon>
+            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+          </svg>
+          Video Lectures
+        </h3>
+        <ul>
+          <li>Intermediate Algebra Video Series
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Electromagnetism Video Series
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Organic Synthesis Techniques
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Molecular Biology and DNA Replication
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Object-Oriented Programming Concepts
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+
+    <div class="resource-grid content advanced">
+      <div class="resource-box">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 1 1 3-3h7z"></path>
+          </svg>
+          Notes
+        </h3>
+        <ul>
+          <li>Advanced Calculus Notes
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Quantum Physics Notes
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Advanced Organic Synthesis
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Molecular Genetics and Gene Expression
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Machine Learning Algorithms
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+        </ul>
+      </div>
+    
+      <div class="resource-box">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="23 7 16 12 23 17 23 7"></polygon>
+            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+          </svg>
+          Video Lectures
+        </h3>
+        <ul>
+          <li>Advanced Calculus Video Series
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Quantum Physics Video Series
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Spectroscopy and Structure Determination
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Advanced Genetics and Epigenetics
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Deep Learning and Neural Networks
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+
+    <div class="resource-grid content expert">
+      <div class="resource-box">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 1 1 3-3h7z"></path>
+          </svg>
+          Notes
+        </h3>
+        <ul>
+          <li>Expert Algebra Notes
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Theoretical Physics Notes
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Computational Chemistry
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Systems Biology and Network Analysis
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Artificial Intelligence and Robotics
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+        </ul>
+      </div>
+    
+      <div class="resource-box">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="23 7 16 12 23 17 23 7"></polygon>
+            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+          </svg>
+          Video Lectures
+        </h3>
+        <ul>
+          <li>Expert Algebra Video Series
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Theoretical Physics Video Series
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Molecular Modeling and Simulations
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Synthetic Biology and Genome Engineering
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+          <li>Natural Language Processing and Computer Vision
+            <svg viewBox="0 0 24 24" class="icon">
+              <circle class="circle" cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="2" />
+              <path class="arrow" d="M12 8l4 4-4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+
+  </section>
+ 
+  <section id="featured" class="section featured-section">
+    <h2>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+      </svg>
+      Featured Content
+    </h2>
+    <div class="featured-grid">
+      <div class="flash-card">
+        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Calculus">
+        <h3>Introduction to Calculus</h3>
+        <p>Master the fundamentals of calculus with our comprehensive guide.</p>
+        <div class="card-back">
+          <p>Includes practice problems and video tutorials</p>
+        </div>
+      </div>
+      <div class="flash-card">
+        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Physics Lab">
+        <h3>Physics Lab Experiments</h3>
+        <p>Explore hands-on physics experiments you can do at home.</p>
+        <div class="card-back">
+          <p>Step-by-step instructions and safety guidelines included</p>
+        </div>
+      </div>
+      <div class="flash-card">
+        <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Algebra">
+        <h3>Algebra Mastery Course</h3>
+        <p>From basics to advanced topics, become an algebra expert.</p>
+        <div class="card-back">
+          <p>Interactive quizzes and personalized feedback</p>
+        </div>
+      </div>
+      <div class="flash-card">
+        <img src="https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Chemistry">
+        <h3>Chemistry Formulas Cheat Sheet</h3>
+        <p>Quick reference guide for common chemistry formulas.</p>
+        <div class="card-back">
+          <p>Printable PDF included for offline use</p>
+        </div>
+      </div>
+      <div class="flash-card">
+        <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Biology">
+        <h3>Biology Visualization Tools</h3>
+        <p>Interactive 3D models of biological structures and processes.</p>
+        <div class="card-back">
+          <p>Compatible with VR headsets for immersive learning</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+</main>
+
+
+
+
+<script>
+  // scripts.js
+
+document.addEventListener('DOMContentLoaded', () => {
+  const circles = document.querySelectorAll('.roadmap .circle');
+  const contents = document.querySelectorAll('.resource-grid.content');
+  const resourceItems = document.querySelectorAll('.resource-box ul li');
+  const progressBar = document.getElementById('progress-bar');
+  const roadmapProgressBars = document.querySelectorAll('.roadmap-item .progress');
+
+  // Show beginner content by default
+  document.querySelector('.resource-grid.content.beginner').classList.add('active');
+
+  // Set initial progress for roadmap items
+  roadmapProgressBars.forEach(bar => {
+    const progress = bar.dataset.progress;
+    bar.style.width = `${progress}%`;
+  });
+
+  // Handle roadmap circle clicks
+  circles.forEach(circle => {
+    circle.addEventListener('click', () => {
+      const category = circle.classList[1];
+      document.querySelectorAll('.resource-grid').forEach(grid => {
+        grid.classList.toggle('active', grid.classList.contains(category));
+      });
+      circles.forEach(c => c.classList.remove('active'));
+      circle.classList.add('active');
+    });
+  });
+
+  // Handle resource box clicks
+  resourceItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const link = item.getAttribute('data-link');
+      if (link) {
+        window.location.href = link;
+      }
+    });
+  });
+
+  // Update progress bar on scroll
+  window.addEventListener('scroll', () => {
+    const scrollPosition = window.scrollY;
+    const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollPosition / documentHeight) * 100;
+    progressBar.style.width = `${scrollPercent}%`;
+  });
+});
+
+</script>
+</body>
+</html>
